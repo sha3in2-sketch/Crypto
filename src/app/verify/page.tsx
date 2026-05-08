@@ -24,10 +24,10 @@ export default function VerifyPage() {
       const storedItem = items.find((i: any) => i.fileName === file.name);
       
       if (storedItem) {
-        if (storedItem.hash === calculatedHash) {
+        if (storedItem.fileHash === calculatedHash) {
           setResult({
             status: 'Authentic',
-            storedHash: storedItem.hash,
+            storedHash: storedItem.fileHash,
             calculatedHash,
             item: storedItem
           });
@@ -35,13 +35,13 @@ export default function VerifyPage() {
           // Calculate difference roughly
           let diffBits = 0;
           for(let i=0; i<calculatedHash.length; i++) {
-            if(calculatedHash[i] !== storedItem.hash[i]) diffBits++;
+            if(calculatedHash[i] !== storedItem.fileHash[i]) diffBits++;
           }
           const diffPercentage = ((diffBits / calculatedHash.length) * 100).toFixed(2);
           
           setResult({
             status: 'Compromised',
-            storedHash: storedItem.hash,
+            storedHash: storedItem.fileHash,
             calculatedHash,
             diffPercentage,
             item: storedItem

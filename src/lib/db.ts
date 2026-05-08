@@ -5,9 +5,15 @@ export interface EvidenceItem {
   id: string;
   fileName: string;
   fileSize: number;
-  hash: string;
+  fileHash: string; // Whirlpool hash of the file
+  blockHash: string; // Hash of the entire block
+  previousHash: string;
   timestamp: string;
-  status: 'Secure' | 'Tampered';
+  status: 'Secure' | 'Tampered' | 'Chain Broken';
+  nonce: number;
+  signature: string;
+  signer: string;
+  content: string; // Used for simulation of attacks
 }
 
 const dataFilePath = path.join(process.cwd(), 'data.json');

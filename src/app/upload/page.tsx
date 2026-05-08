@@ -34,7 +34,7 @@ export default function UploadPage() {
         id: generateEvidenceId(),
         fileName: file.name,
         fileSize: file.size,
-        hash: hash
+        fileHash: hash
       };
       
       // 2. Save to db
@@ -150,9 +150,15 @@ export default function UploadPage() {
                   <div className="text-white">{result.fileName}</div>
                 </div>
                 <div className="col-span-2">
-                  <div className="text-xs text-slate-500 uppercase tracking-wider mb-1">Whirlpool Hash (512-bit)</div>
+                  <div className="text-xs text-slate-500 uppercase tracking-wider mb-1">Whirlpool File Hash (512-bit)</div>
                   <div className="font-mono text-[#00e5ff] text-sm break-all bg-[#040d21] p-3 rounded border border-[#1e3a8a]/30">
-                    {result.hash}
+                    {result.fileHash}
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <div className="text-xs text-slate-500 uppercase tracking-wider mb-1">Blockchain Hash</div>
+                  <div className="font-mono text-[#10b981] text-sm break-all bg-[#040d21] p-3 rounded border border-[#10b981]/30">
+                    {result.blockHash}
                   </div>
                 </div>
               </div>
